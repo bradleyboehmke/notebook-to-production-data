@@ -12,7 +12,7 @@ format:
     revealjs-plugins:
       - appearance
       - highlight-text
-footer: '[https://bradleyboehmke.github.io/portfolio-via-github](https://bradleyboehmke.github.io/portfolio-via-github)'
+footer: '[https://bradleyboehmke.github.io/notebook-to-production-data](https://bradleyboehmke.github.io/notebook-to-production-data)'
 execute:
   echo: false
 ---
