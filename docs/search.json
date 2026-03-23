@@ -1,0 +1,205 @@
+[
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#applied-workshops-series",
+    "href": "workshop/slides/dataops-pipeline.html#applied-workshops-series",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Applied Workshops Series",
+    "text": "Applied Workshops Series\nBridging the gap between classroom and industry\n This series shares best practices and industry standards not always covered in coursework — practical skills that can differentiate you early in your career.\n\nFrame this as part of a larger effort to prepare students for professional environments. The classroom teaches fundamentals, but there are practical skills that matter in industry. This series fills that gap."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#todays-agenda",
+    "href": "workshop/slides/dataops-pipeline.html#todays-agenda",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nDataOps overview\nPipeline walk-through\nDirection for hands-on work\nWrap-up\n\n\n\n\n\n\n\n\nToday’s Goal\n\n\nWalk out understanding how to transform exploratory notebooks into reliable, production-ready data pipelines.\n\n\n\n\nSet expectations: This is hands-on and practical. We’ll see a real example from notebook to production. The goal is to give you a mental model and actionable next steps, not to make you an expert in one session."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#how-we-usually-start-notebooks",
+    "href": "workshop/slides/dataops-pipeline.html#how-we-usually-start-notebooks",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "How We Usually Start: Notebooks",
+    "text": "How We Usually Start: Notebooks\n\n\nTypical workflow:\n\nLoad data from CSVs\nMerge datasets\nClean and explore\nBuild features\nTrain a model\nGet results!\n\n\n\n\n\n\n\n\n\n\n\nAcademic vs. Industry\n\n\nIn academia, you often complete this entire workflow in a single notebook for assignments. That’s perfectly fine for coursework — it gets the job done and helps you learn. But in industry, we need something more robust.\n\n\n\n\nThis is how most data science projects begin — and should begin! Notebooks are perfect for exploration. Show enthusiasm here, not criticism."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#the-scenario-rossmann-store-sales",
+    "href": "workshop/slides/dataops-pipeline.html#the-scenario-rossmann-store-sales",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "The Scenario: Rossmann Store Sales",
+    "text": "The Scenario: Rossmann Store Sales\nBusiness Problem:\nForecast daily sales for 3,000+ retail stores across a full region for the next 6 weeks\n\n\n\n\n\n\n\nNote\n\n\nThis is a real-world forecasting problem from the Rossmann Kaggle competition: https://www.kaggle.com/c/rossmann-store-sales\n\n\n\n\n\nProduction challenges:\n\n\n\nNew sales data arrives daily\nPipeline must run automatically to produce fresh forecasts\nData schema has changed unexpectedly\n\n\n\nMultiple data scientists need to collaborate\nResults must be reproducible\nBad data has slipped through before\n\n\n\nSet up the real-world operational context. This isn’t just about building a model once — it’s about running it reliably in production.\nEmphasize: “This is the kind of forecasting problem you might see in retail, e-commerce, or supply chain roles. But notice — the challenge isn’t just building a good model. It’s running that model reliably, day after day, with changing data.”\nThese operational challenges are exactly what DataOps addresses. You’re priming them to understand why the notebook approach isn’t sufficient."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#the-school-approach-notebooks",
+    "href": "workshop/slides/dataops-pipeline.html#the-school-approach-notebooks",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "The School Approach: Notebooks",
+    "text": "The School Approach: Notebooks\n\n\nTypical workflow (1-3 notebooks):\n\nImport train.csv & store.csv\nMerge datasets together\nExploratory data analysis\nEngineer features\nTrain baseline model\nEvaluate performance\nGenerate predictions\n\n\n\nManual execution: Run → Inspect → Run next → Repeat\n\n\n\n\n\n\n\nNote\n\n\nView the notebooks → https://github.com/bradleyboehmke/rossmann-forecasting/tree/1-initial-exploration\n\n\n\n\nWalk through what a typical school project looks like. Usually 1-3 notebooks that you run sequentially. If you’re organized, you might split into separate notebooks for EDA, feature engineering, and modeling.\nPoint out: This is how you SHOULD start! Notebooks are great for exploration and learning. The issue isn’t that this approach is wrong — it’s that it doesn’t scale to production needs.\nKey limitation: You have to run each notebook manually, inspect results, then run the next one. There’s no automation, no validation gates, no error handling.\nThis is the “before” state we’ll evolve throughout the workshop."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#academic-vs.-industry-different-goals",
+    "href": "workshop/slides/dataops-pipeline.html#academic-vs.-industry-different-goals",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Academic vs. Industry: Different Goals",
+    "text": "Academic vs. Industry: Different Goals\n\n\nIn school:\n\nGoal: Learn to analyze & model data\nFocus: Getting results, understanding concepts\nTimeline: Days or Weeks\nNotebooks are perfect for this!\n\n\nIn industry:\n\nGoal: Build reliable, maintainable systems\nFocus: Scalability, reproducibility, collaboration\nTimeline: Months, Quarters, Years!\nNotebooks are the starting point\n\n\n\n\n\n\n\n\n\nThe Evolution\n\n\nNotebooks for exploration → Structured pipelines for production\nWe’ll focus on the data pipeline piece today.\n\n\n\n\nThis is a critical framing moment. Emphasize:\nValidation, not criticism: “The notebook approach isn’t wrong — it’s just optimized for different goals. School optimizes for learning. Industry optimizes for reliability.”\nNatural progression: “In industry, we often START with notebooks to explore possibilities. Then, as the project matures and we need to run it repeatedly, we need more structure.”\nFocus for today: “We could talk about structuring the modeling piece, the deployment piece, the monitoring piece… but today we’re focusing on the DATA PIPELINE — how to go from raw data to clean, validated, versioned features. This is the foundation everything else builds on.”\nThis validates their experience, shows them the bigger picture, and sets clear expectations for the workshop scope."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#but-before-we-start",
+    "href": "workshop/slides/dataops-pipeline.html#but-before-we-start",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "But Before We Start…",
+    "text": "But Before We Start…\n\n\n\n\n\n\nTurn to your neighbor (2-3 minutes):\n\n\nDiscuss what could go wrong when running this notebook workflow in production.\n\n\n\n\nThink about scenarios like:\n\n\n\nData changes over time\nTeam collaboration\nResults need to be reproduced\n\n\n\nBad data appears\nRunning daily for months\nDebugging errors\n\n\n\nFacilitation (5 minutes total):\n\nGive students 2-3 minutes to discuss with neighbors\nCall on 2-3 groups to share what they discussed\nListen for themes related to:\n\nData quality/validation → leads to validation gates\nReproducibility → leads to version control & automation\nCollaboration → leads to modular code structure\nManual processes → leads to automation\nDebugging complexity → leads to testing & validation\n\n\nAcknowledge all answers positively. Don’t correct — just capture themes on board/slide. Say something like: “Great observations! These are exactly the challenges DataOps addresses. Let’s see how.”\nThis primes them for the DataOps principles without lecturing. They’re discovering the problem space themselves."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#what-is-dataops",
+    "href": "workshop/slides/dataops-pipeline.html#what-is-dataops",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "What Is DataOps?",
+    "text": "What Is DataOps?\n\n\n\n\n\n\nDataOps\n\n\nA set of practices for building reliable, automated, and maintainable data pipelines\n\n\n\n\nCore Principles:\n\nModularity — Reusable, testable code components\nQuality Assurance — Validate data at every stage\nVersion Control — Track code AND data changes\nAutomation — Run pipelines without manual intervention\nReproducibility — Same inputs → same outputs, always\n\n\nDefine DataOps clearly and concretely. Instead of referencing DevOps (which most students won’t know), focus on the practical outcome: reliable, automated, maintainable pipelines.\nConnect back to their discussion: “Remember the challenges you just discussed — data changing, needing to reproduce results, running daily for months? DataOps is the discipline that addresses exactly those challenges.”\nEmphasize this isn’t about replacing notebooks — it’s about evolving from exploration to production. These principles ensure reliability when you need to run something repeatedly in production."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#what-is-modularity",
+    "href": "workshop/slides/dataops-pipeline.html#what-is-modularity",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "What Is Modularity?",
+    "text": "What Is Modularity?\n\n\n\n\n\n\nModularity\n\n\nBreaking code into reusable, testable components\n\n\n\n\nWhy it matters:\n\nCollaboration — Multiple people can work on different modules\nTesting — Each component can be tested independently\nReusability — Use the same code across notebooks and production\nMaintainability — Fix bugs in one place, not scattered across notebooks\n\n\nModularity is about organization and reusability. Instead of having all your code in one long notebook,you break it into logical components that can be imported and reused.\nConnect to their experience: “You’ve probably copy-pasted code between notebooks before. Modularity eliminates that — write once, import everywhere.”"
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#notebook-approach-all-in-one-file",
+    "href": "workshop/slides/dataops-pipeline.html#notebook-approach-all-in-one-file",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Notebook Approach: All in One File",
+    "text": "Notebook Approach: All in One File\n\n\nNotebook structure:\nnotebooks/\n└── 01-analysis.ipynb\n    ├── Cell 1: load_data()\n    ├── Cell 2: clean_data()\n    ├── Cell 3: merge_data()\n    ├── Cell 4: build_features()\n    ├── Cell 5: train_model()\n    └── Cell 6: evaluate()\nAll functions defined inline\n\nProblems:\n\nCan’t reuse functions across notebooks\nHard to test individual pieces\nCopy-paste code between projects\nChanges require updating multiple places\n\n\n\nPoint out: You’ve probably defined the same data cleaning function in 3 different notebooks. When you find a bug, you have to fix it in all 3 places. This is the modularity problem."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#production-approach-modular-structure",
+    "href": "workshop/slides/dataops-pipeline.html#production-approach-modular-structure",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Production Approach: Modular Structure",
+    "text": "Production Approach: Modular Structure\n\n\nProject structure:\nproject/\n├── notebooks/\n│   └── exploration.ipynb\n└── src/\n    ├── data/\n    │   ├── load.py\n    │   ├── clean.py\n    │   └── validate.py\n    ├── features/\n    │   └── build.py\n    └── models/\n        └── train.py\n\nBenefits:\n\nImport functions into any notebook\nTest each module independently\nFix bugs in one place\nTeam members work on different modules\n\n\n\n\n\n\n\n\nTip\n\n\nNotebooks for exploration, src/ for production code\n\n\n\n\n\nLet’s see this in action with the Rossmann project…\n\nShow the rossmann-forecasting repository structure. Point out src/data/make_dataset.py and src/features/build_features.py. These are importable modules that can be used by notebooks, scripts, or APIs."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#what-is-quality-assurance",
+    "href": "workshop/slides/dataops-pipeline.html#what-is-quality-assurance",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "What Is Quality Assurance?",
+    "text": "What Is Quality Assurance?\n\n\n\n\n\n\nQuality Assurance\n\n\nValidating data at every stage to catch errors early\n\n\n\n\n\n\nWhy it matters:\n\nPrevent bad data from propagating downstream\nSave debugging time — catch issues at the source\nBuild confidence — know your data meets expectations\nFail fast — stop the pipeline when assumptions break\n\n\n\n\n\nQuality Assurance is about defensive data engineering. Don’t assume data is good — verify it.\nShare a story: “I once spent 2 days debugging a model, only to find the raw CSV had an extra comma that corrupted half the rows. A 2-minute validation would have caught it immediately.”"
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#notebook-approach-hope-for-the-best",
+    "href": "workshop/slides/dataops-pipeline.html#notebook-approach-hope-for-the-best",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Notebook Approach: Hope for the Best",
+    "text": "Notebook Approach: Hope for the Best\n\n\nTypical workflow:\n\nLoad data\nMaybe print .head() or .info()\nAssume everything is fine\nProceed with analysis\n\n\n\n\n\n\n\n\n\n\n\nThe Problem\n\n\nIf anything changes with data quality, you don’t find out until you run a cell and get an error\n\n\n\n\nWe’ve all done this — load data, glance at it, assume it’s fine. Then weeks later you realize the data had issues all along. By then, you’ve built everything on top of bad data."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#production-approach-how",
+    "href": "workshop/slides/dataops-pipeline.html#production-approach-how",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Production Approach: How?",
+    "text": "Production Approach: How?\n\n\n\n\n\n\nGreat Expectations\n\n\nA Python library that helps validate your data has the quality and characteristics you expect for downstream analysis.\n\n\n\n\n\nHow it works:\n\nDefine expectations (schema, types, ranges, distributions)\nRun validation checks at each pipeline stage\nStop pipeline if data fails validation (--fail-on-error)\nCatch issues before they propagate downstream\n\n\nRossmann: 3 validation stages\n\nValidate Raw Data\npython src/data/validate_data.py \\\n  --stage raw --fail-on-error\nValidate Processed Data\npython src/data/validate_data.py \\\n  --stage processed --fail-on-error\nValidate Features\npython src/data/validate_data.py \\\n  --stage features --fail-on-error\n\n\n\nLet’s see this in action with the Rossmann project…\n\nWalk through each validation stage. Emphasize --fail-on-error — if data is bad, the pipeline stops. Better to fail fast than build on corrupted data.\nTool used: Great Expectations. It’s a Python library for data validation.\nNow open the rossmann-forecasting repository and demonstrate: - Show src/data/validate_data.py script - Point out the three validation stages (raw, processed, features) - Show examples of Great Expectations suites in the expectations/ directory - Run a validation command to show it in action"
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#what-is-version-control",
+    "href": "workshop/slides/dataops-pipeline.html#what-is-version-control",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "What Is Version Control?",
+    "text": "What Is Version Control?\n\n\n\n\n\n\nVersion Control\n\n\nIn industry, we track changes to code, models AND data over time\n\n\n\n\n\n\nWhy it matters:\n\nRollback — Undo changes that break things\nCollaboration — Multiple people work simultaneously\nHistory — Understand what changed and why\nExperimentation — Try ideas without fear\n\n\n\n\n\nMost students know Git for code. But what about data? Data changes too! Version control for data is critical for reproducibility."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#notebook-approach-maybe-git",
+    "href": "workshop/slides/dataops-pipeline.html#notebook-approach-maybe-git",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Notebook Approach: Maybe Git 🤨",
+    "text": "Notebook Approach: Maybe Git 🤨\nTypical situation:\n\nGit tracks notebook files (maybe)\nGit for data is not efficient\nNo record of data changes\nCan’t recreate results from last month\n\n\n\n\n\n\n\n\nWarning\n\n\n“Our model performance dropped. Was it code changes or data changes?”\nYou’ll never know.\n\n\n\n\nGit was designed for text files, not large data files. If you try to commit a 5GB CSV to Git, you’ll have problems. So data often goes unversioned. This breaks reproducibility."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#production-approach-dvc",
+    "href": "workshop/slides/dataops-pipeline.html#production-approach-dvc",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Production Approach: DVC",
+    "text": "Production Approach: DVC\n\n\nBenefits:\n\nTrack which data version produced which results\nRoll back data to previous state\nShare data across team without Git issues\nThink: Git for code, DVC for data\n\n\n\nRossmann approach:\n\n\n\n\n\n\n\n\n\nNote\n\n\nAfter you process data, run:\ndvc add data/processed/processed_data.csv\ndvc push\n\n\n\n\n\nLet’s see this in action with the Rossmann project…\n\nDVC (Data Version Control) works like Git for data. It tracks metadata in Git (small), stores actual data remotely (S3, cloud storage). You can check out any historical version.\nExample: “Model performance dropped? Check out the code and data from last week, reproduce the results, then bisect to find what changed.”\nNow open the rossmann-forecasting repository and demonstrate: - Show .dvc/ directory and data.dvc files - Point out how DVC tracks data versions in Git (just metadata) - Show dvc push and dvc pull commands - Explain how this enables time travel for both code and data"
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#what-is-automation",
+    "href": "workshop/slides/dataops-pipeline.html#what-is-automation",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "What Is Automation?",
+    "text": "What Is Automation?\n\n\n\n\n\n\nAutomation\n\n\nRunning pipelines without manual intervention\n\n\n\n\nWhy it matters:\n\nConsistency — No human error\nSpeed — Runs whenever needed\nScale — Process daily updates automatically\nFreedom — Focus on analysis, not button-clicking\n\n\nAutomation removes manual steps from your pipeline. Once you have modular, validated, versioned code, you can script it to run automatically.\nThis sets the stage for reproducibility — we’ll see how in the next principle."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#notebook-approach-manual-execution",
+    "href": "workshop/slides/dataops-pipeline.html#notebook-approach-manual-execution",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Notebook Approach: Manual Execution",
+    "text": "Notebook Approach: Manual Execution\n\n\nDaily ritual:\n\nOpen Notebook 1\nClick “Run All”\nWait… check for errors\nOpen Notebook 2\nClick “Run All”\nRepeat for each notebook\nHope nothing broke\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nThis doesn’t scale. What if you need to run this 100x/day?\n\n\n\n\nManual execution is fine for exploration. But imagine running this every day for production forecasts. Or every hour. Or whenever new data arrives. Manual doesn’t scale."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#production-approach-one-command",
+    "href": "workshop/slides/dataops-pipeline.html#production-approach-one-command",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Production Approach: One Command",
+    "text": "Production Approach: One Command\nRossmann approach:\nbash scripts/dataops_workflow.sh\nThis single command:\n\n✓ Validates raw data\n✓ Processes data\n✓ Validates processed data\n✓ Builds features\n✓ Validates features\n✓ Versions data with DVC\n\nOr schedule it:\n# Run daily at 6am\n0 6 * * * cd /path/to/project && bash scripts/dataops_workflow.sh\n\n\nLet’s see this in action with the Rossmann project…\n\nShow the automation script. One command, entire pipeline executes. No manual steps. No forgetting a validation.\nThis can be scheduled with cron, triggered by new data arrivals, or run in GitHub Actions. Full automation.\nNow open the rossmann-forecasting repository and demonstrate: - Run bash scripts/dataops_workflow.sh and show the pipeline executing - Point out how it orchestrates all the previous principles (modular code, validation gates, versioned data) - Show how it can be scheduled with cron or GitHub Actions - Emphasize: automation removes human error and ensures consistency\nSet up the transition: “Now, when we combine ALL these principles together — modularity, quality assurance, version control, and automation — we get something powerful: reproducibility. Let’s talk about that next.”"
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#what-is-reproducibility",
+    "href": "workshop/slides/dataops-pipeline.html#what-is-reproducibility",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "What Is Reproducibility?",
+    "text": "What Is Reproducibility?\n\n\n\n\n\n\nReproducibility\n\n\nSame inputs → Same outputs, every single time\n\n\n\n\nWhy it matters:\n\nTrust — Results can be independently verified\nDebugging — Reproduce errors to fix them\nCollaboration — Team can recreate your work\nCompliance — Auditors can verify processes\n\n\nReproducibility is the ultimate goal — when you run the same pipeline with the same data, you get identical results every time.\nThis is what we’ve been building toward with the previous four principles. Each one contributes to reproducibility."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#notebook-approach-manual-fragile",
+    "href": "workshop/slides/dataops-pipeline.html#notebook-approach-manual-fragile",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Notebook Approach: Manual & Fragile",
+    "text": "Notebook Approach: Manual & Fragile\n\n\nCommon issues:\n\nInconsistent dependency management\n“Works on my machine”\nRun cells out of order\nForget to rerun after changes\nHidden state in memory\nLack of versioning\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nEven you can’t reproduce your own results 6 months later\n\n\n\n\nNotebooks have hidden state. You can delete a cell, but the variables are still in memory. Or run cells out of order. The notebook shows output from a previous run, but can’t actually be re-executed to produce that output."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#production-approach-all-principles-working-together",
+    "href": "workshop/slides/dataops-pipeline.html#production-approach-all-principles-working-together",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Production Approach: All Principles Working Together",
+    "text": "Production Approach: All Principles Working Together\n\n\n\nWhen you combine:\n\nModular code (src/ structure)\nValidated data (Great Expectations)\nVersioned artifacts (Git + DVC)\nAutomated execution (workflow scripts)\n\n\nYou get reproducibility:\n# Same inputs → Same outputs\nbash scripts/dataops_workflow.sh\n\nFixed execution order\nNo hidden state\nDocumented dependencies\nValidated at every stage\n\n\n\n\n\n\n\n\nThe Result\n\n\nReproducibility isn’t a separate thing to implement — it’s what you get when you follow the other principles\n\n\n\n\n\nLet’s see this in action with the Rossmann project…\n\nThis is the payoff moment. Reproducibility isn’t one more thing you have to do — it’s the natural outcome of structuring your pipeline correctly.\nShow scripts/dataops_workflow.sh one more time, but now emphasize how ALL the principles work together: - Modular code in src/ (Principle 1) - Validation at each stage (Principle 2) - Git + DVC tracking everything (Principle 3) - One script runs it all (Principle 4) - Result: Perfect reproducibility (Principle 5)\nPoint out: “This script will produce identical results whether you run it today, next month, or next year — as long as you use the same data version. That’s reproducibility.”"
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#the-transformation-journey",
+    "href": "workshop/slides/dataops-pipeline.html#the-transformation-journey",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "The Transformation Journey",
+    "text": "The Transformation Journey\n\n\n\n\n\n\nDon’t Start With Complexity\n\n\nProjects evolve and mature progressively over time. You don’t build all this on day one!\n\n\n\n\n\nStage 1: Early Exploration (Notebook-based) → Quick insights, manual process, experimentation\nStage 2: Research Matures (DataOps) → Add modularity, reusable components, automated data pulls, validation\nStage 3: Production Ready (Full MLOps) → In-market testing, model registry, API, monitoring, CI/CD\n\n\nCRITICAL MESSAGE: Emphasize this is progressive, not all-or-nothing.\n“Don’t try to build Stage 3 on day one! Projects naturally evolve:\nStage 1: You start with simple notebooks for exploration. This is normal and good - you’re learning the problem space.\nStage 2: As your research matures and you run things repeatedly, you start adding the DataOps principles we covered today - modularity, validation, version control, automation. This is what we focused on today.\nStage 3: As you approach in-market testing or production deployment, you add more mature components like APIs, monitoring, and CI/CD.\nEach stage builds on the previous. The key is recognizing when it’s time to evolve to the next stage. If you’re running the same notebook weekly, it’s time for Stage 2.”\nWalk through the three-branch structure in the Rossmann repo showing this evolution."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#see-it-in-action",
+    "href": "workshop/slides/dataops-pipeline.html#see-it-in-action",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "See It In Action",
+    "text": "See It In Action\nExplore the three branches in the Rossmann repository to see how the project evolves from notebook-based exploration to a full DataOps pipeline:\n\n\n\nStage 1: Initial Exploration\nStage 2: Maturing Research\nStage 3: Production Ready (main)\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nhttps://github.com/bradleyboehmke/rossmann-forecasting\n\n\n\n\nEncourage students to explore all three branches. Seeing the progression helps understand why each stage matters. They can fork and experiment."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#notebooks-are-fine-but-challenge-yourself",
+    "href": "workshop/slides/dataops-pipeline.html#notebooks-are-fine-but-challenge-yourself",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Notebooks Are Fine… But Challenge Yourself",
+    "text": "Notebooks Are Fine… But Challenge Yourself\nIn school and early in your career:\n\nWorking in simple notebooks is perfectly acceptable\nWe do this at work too — for exploration and experimentation\nIt’s how you learn and iterate quickly\n\n\nAs you prepare for industry:\n\nChallenge yourself to build production-grade workflows\nPractice the DataOps principles we covered today\nDifferentiate yourself by showing you can build reliable systems\n\n\n\n\n\n\n\nThe Key Question\n\n\n“Can I run this reliably, repeatedly, and reproducibly?”\n\n\n\n\nValidate their current approach while encouraging growth.\n“Everything you’ve done in notebooks up to this point is valuable. Keep using notebooks for exploration! But as you prepare for industry roles, start practicing production-grade thinking. The employers who hire data scientists want people who can build reliable systems, not just run notebooks once.”\nThis isn’t about making them feel bad about notebooks — it’s about showing them the next level."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#study-the-rossmann-repository",
+    "href": "workshop/slides/dataops-pipeline.html#study-the-rossmann-repository",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Study the Rossmann Repository",
+    "text": "Study the Rossmann Repository\nTake time to explore how a simple Kaggle dataset can mature into a production-grade system:\n\n\n\nWhat to look for:\n\nHow notebooks evolve into modules\nWhere validation gates are added\nHow data versioning works\nHow automation ties it together\n\n\nThree branches to explore:\n\n1-initial-exploration\n2-research-mature\nmain (production)\n\n\n\n\n\n\n\n\nNote\n\n\nhttps://github.com/bradleyboehmke/rossmann-forecasting\n\n\n\n\nEncourage students to spend real time with this repo. Clone it, run the scripts, read the code.\n“This is your roadmap. You can take any Kaggle dataset and apply these same principles. The Rossmann example shows you exactly how to structure it, what tools to use, and how to evolve from exploration to production.”\nThis is their reference implementation. They should bookmark it and refer back to it as they build their own projects."
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#now-start-practicing",
+    "href": "workshop/slides/dataops-pipeline.html#now-start-practicing",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Now Start Practicing",
+    "text": "Now Start Practicing\nFind simple data pipeline projects to practice these principles:\n\nPull data from APIs (weather, finance, sports)\nBuild pipelines around Kaggle datasets\nCreate ETL workflows for real-world data\n\n\n\n\nBasic Notebook Example:\nYahoo Finance Notebook\n\nSingle notebook approach\nManual execution\nNo validation or versioning\nGood for learning, not for portfolios\n\n\nProduction-Grade Example:\nJeff Whitcomb’s Yahoo Finance Pipeline\n\nModular src/ structure\nTest suites for validation\nEnd-to-end automation\n\n\n\n\n\n\n\nTip\n\n\nThis is what employers want to see\n\n\n\n\n\nContrast these two approaches directly.\n“As an employer, when I review portfolios, I want to see the project on the left — structured, validated, production-ready. The one on the right shows you can use pandas and make plots, but it doesn’t show you can build reliable systems.”\n“You don’t need a massive project. Jeff’s pipeline is simple — daily stock data ingestion with validation. But it’s structured professionally, and that’s what stands out.”\nAction item: “Pick one small dataset you’re interested in. Spend a few weeks building a production-grade pipeline around it. Add it to your portfolio. This will differentiate you in interviews.”"
+  },
+  {
+    "objectID": "workshop/slides/dataops-pipeline.html#thank-you",
+    "href": "workshop/slides/dataops-pipeline.html#thank-you",
+    "title": "From Notebook to Production: Building Reliable Data Pipelines",
+    "section": "Thank You!",
+    "text": "Thank You!\nQuestions?\n\nResources:\n\nRossmann Forecasting Project\nJeff Whitcomb’s Yahoo Finance Pipeline\nDVC Documentation\nGreat Expectations\n\n\nOpen for questions. Encourage students to reach out after the workshop.\nFinal encouragement: “This is a journey. You don’t need to master everything today. Start small — pick one principle and apply it to your next project. Build incrementally. You’ve taken the first step by being here today.”\nRemind them: the Rossmann repo and these resources will always be available. They can revisit this material as they grow."
+  }
+]

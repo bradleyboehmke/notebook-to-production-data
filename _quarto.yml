@@ -1,0 +1,10 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "From Notebook to Production: Building Reliable Data Pipelines"
+  navbar:
+    left:
+      - text: "Workshop Slides"
+        href: workshop/slides/dataops-pipeline.html
